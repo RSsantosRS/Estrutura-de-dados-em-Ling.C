@@ -1,0 +1,51 @@
+#include<stdlib.h> 
+#include<stdio.h> 
+
+#define TAM 10 
+
+    typedef struct{ 
+        int vet[TAM]; 
+        int topo; 
+    }pilhavet; 
+//funçao sem retorno (void) 
+
+//nome da função,valor a ser empilhado e o ponteiro para manipular struct 
+    void empilha(int valor,pilhavet * p){ 
+//se ponteiro seta topo = 10(0-9),pilha cheia,sai do programa 
+        if(p -> topo == TAM-1){ 
+            printf("PIlha cheia"); 
+            exit(0); 
+        } 
+//preencher ate o topo da pilha 
+        p->topo++; 
+        p->vet[p->topo]=valor; 
+    } 
+//esvaziar pilha     
+    int desempilha(pilhavet*p){ 
+//variavel auxiliar 
+        int aux; 
+        if (p-> topo<0){ 
+            printf("Pilha vazia"); 
+            exit(1); 
+        } 
+        aux = p -> vet[p->topo]; 
+        p->topo--; 
+        return aux; 
+    } 
+//função principal do código 
+    int main(void){ 
+        pilhavet pilha; 
+        int valor; 
+//começa com -1 pois 0 é uma casa válida (0-9) 
+        pilha.topo = -1; 
+        for(int i=0;i<TAM;i++){ 
+            printf("Digite o valor a ser empilhado: \n"); 
+            scanf("%d",&valor); 
+            empilha(valor,&pilha); 
+        } 
+        for(int i=0;i<TAM;i++){ 
+            printf("%d\n",desempilha(&pilha)); 
+        } 
+        printf("\n"); 
+        return 0; 
+    } 

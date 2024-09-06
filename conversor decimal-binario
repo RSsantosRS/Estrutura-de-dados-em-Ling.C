@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define TAM 32
+    typedef struct {
+    int vet[TAM];
+    int topo;
+    }Pilha;
+
+    void empilha(Pilha* p, int valor) {
+        if (p->topo == TAM - 1) {
+        printf("Pilha cheia\n");
+        exit(0);
+    }
+        p->topo++;
+        p->vet[p->topo] = valor;
+        
+    }
+
+    int desempilha(Pilha* p) {
+    if (p->topo == -1) {
+        printf("Pilha vazia\n");
+        exit(1);
+    }
+    
+    int aux = p->vet[p->topo];
+    p->topo--;
+    return aux;
+    }
+    
+    int main(void) {
+        int num;
+        int resto;
+        Pilha pilhas;
+        pilhas.topo = -1;
+        printf("Bem vindo ao conversor de valores inteiros em binário!\n");
+        printf("Digite um número inteiro: ");
+    scanf("%d", &num);
+
+        if (num == 0) {
+            printf("zero é representado pelo zero em binário \n");
+            return 0;
+        }
+       
+        while (num > 0) {
+            resto = num % 2; 
+            empilha(&pilhas,resto);
+            num = num / 2; 
+        }
+    
+    printf("A representação em binário do numero é: ");
+        while (pilhas.topo != -1) {
+        printf("%d", desempilha(&pilhas));
+    }
+        printf("\n");
+    return 0;
+}

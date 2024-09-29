@@ -1,0 +1,45 @@
+#include<stdio.h> 
+#include<stdlib.h>
+#include<string.h>
+
+    typedef struct{ 
+        char nome[50]; 
+        int idade; 
+        float salario; 
+    }info;
+
+    int main(){ 
+        
+        int n;
+        float med; 
+        info funcionario[3]; 
+        float somaSalario;
+        
+        printf("Bem vindo ao cadastro de funcionarios\n"); 
+        printf("Digite a quantidade de funcionarios que deseja cadastrar\n");
+        scanf("%d",&n);
+        
+        for (int i=0;i<n;i++){ 
+            getchar();  
+        printf("digite o nome do %d° funcionario\n",i+1);  
+        fgets(funcionario[i].nome,sizeof(funcionario[i].nome),stdin); 
+        
+        printf("Digite a idade do %d° funcionario\n",i+1); 
+        scanf("%d",&funcionario[i].idade); 
+
+        printf("Digite o salario do %d funcionario\n",i+1); 
+        scanf("%f",&funcionario[i].salario); 
+
+        somaSalario +=funcionario[i].salario;
+        } 
+        med = somaSalario/n;
+        printf("///////////////INFORMAÇÕES DOS FUNCIONARIOS/////////////////\n\n");
+        for (int i=0;i<n;i++){
+            printf("Nome: %s",funcionario[i].nome);
+            printf("Idade: %d\n",funcionario[i].idade);
+            printf("Salario: R$%.2f\n\n",funcionario[i].salario);
+        } 
+        printf("\nMedia salarial da equipe foi de:R$%.2f.",med);
+        
+        return(0);
+    } 
